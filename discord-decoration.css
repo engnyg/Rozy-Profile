@@ -1,0 +1,94 @@
+/* ========== Discord 头像装饰样式 ========== */
+
+/* 头像容器 */
+.avatar-container {
+    position: relative;
+    width: 95px;
+    height: 95px;
+    flex-shrink: 0;
+}
+
+/* 头像本体 */
+.avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255,255,255,0.35);
+    box-shadow: 0 0 20px rgba(200, 100, 255, 0.5);
+    position: relative;
+    z-index: 1;
+}
+
+/* Discord 装饰层 */
+.avatar-decoration {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    z-index: 3;
+    pointer-events: none;
+    animation: decorationPulse 3s ease-in-out infinite;
+}
+
+/* 脉冲动画 */
+@keyframes decorationPulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.02);
+        opacity: 0.95;
+    }
+}
+
+/* 悬停效果 */
+.avatar-container:hover .avatar-decoration {
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
+    animation: decorationPulse 1s ease-in-out infinite;
+}
+
+/* 可选：旋转动画 */
+@keyframes decorationRotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* 可选：发光脉冲 */
+@keyframes glowPulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+    }
+    50% {
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.9));
+    }
+}
+
+/* 可选：彩虹色效果 */
+@keyframes rainbowHue {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .avatar-container {
+        width: 80px;
+        height: 80px;
+    }
+
+    .avatar-decoration {
+        width: 115%;
+        height: 115%;
+    }
+}
+
+@media (max-width: 480px) {
+    .avatar-container {
+        width: 70px;
+        height: 70px;
+    }
+}
